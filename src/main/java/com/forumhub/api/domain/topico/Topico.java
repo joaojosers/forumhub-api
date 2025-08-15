@@ -1,16 +1,12 @@
 package com.forumhub.api.domain.topico;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Table(name = "topicos")
 @Entity(name = "Topico")
-@NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Topico {
     
@@ -29,6 +25,21 @@ public class Topico {
     
     private String autor;
     private String curso;
+
+    // Construtor padrão (necessário para JPA)
+    public Topico() {
+    }
+
+    // Construtor com todos os argumentos
+    public Topico(Long id, String titulo, String mensagem, LocalDateTime dataCriacao, StatusTopico status, String autor, String curso) {
+        this.id = id;
+        this.titulo = titulo;
+        this.mensagem = mensagem;
+        this.dataCriacao = dataCriacao;
+        this.status = status;
+        this.autor = autor;
+        this.curso = curso;
+    }
 
     public Topico(DadosCadastroTopico dados) {
         this.titulo = dados.titulo();
